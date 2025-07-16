@@ -6,6 +6,8 @@ export default function Home() {
   const [newTodo, setNewTodo] = useState('');
   const [newDate, setNewDate] = useState(new Date());
   const [todos, setTodos] = useState([]);
+  
+  const currentDate = (new Date()).toLocaleDateString("en-us");
 
   useEffect(() => {
     fetchTodos();
@@ -76,7 +78,7 @@ export default function Home() {
               className="flex justify-between items-center bg-white bg-opacity-90 p-4 mb-4 rounded-lg shadow-lg"
             >
               <span className="text-gray-800">{todo.title}</span>
-              <span className={(new Date()).toISOString() > todo.date ? "text-red-500" : "text-gray-800"}>
+              <span className={currentDate > (new Date(todo.date)).toLocaleDateString("en-us") ? "text-red-500" : "text-gray-800"}>
                 {todo.date ? (new Date(todo.date)).toLocaleDateString("en-us") : ""}
               </span>
               <button
